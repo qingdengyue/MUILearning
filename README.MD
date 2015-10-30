@@ -19,15 +19,10 @@
 > 如果父WebView重写了mui.back()方法，那么子WebView重写mui.back()方法无效，返回键触发后，默认行为：首先关闭子WebView，然后触发父WebView的mui.back()方法。如果需要在子WebView页面屏蔽返回键的事件处理，则需要在子WebView页面，进行如下初始化操作：    
 
 >     mui.init({  
->     
 >                keyEventBind: {  
->                
 >                    backbutton: false  
->                    
 >                }  
->                
 >      });  
->      
 >     设置成功后，子WebView在接收到back事件后，不会关闭页面，然后back事件分发，父级WebView的mui.back()触发。  
      
      
