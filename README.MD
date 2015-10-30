@@ -16,19 +16,18 @@
    
 #遇到的问题和解决方案
 ##(1)父子WebViewback事件处理说明
->如果父WebView重写了mui.back()方法，那么子WebView重写mui.back()方法无效，返回键触发后，默认行为：首先关闭子WebView，然后触发父WebView的mui.back()方法。如果需要在子WebView页面屏蔽返回键的事件处理，则需要在子WebView页面，进行如下初始化操作：  
-
+> 如果父WebView重写了mui.back()方法，那么子WebView重写mui.back()方法无效，返回键触发后，默认行为：首先关闭子WebView，然后触发父WebView的mui.back()方法。如果需要在子WebView页面屏蔽返回键的事件处理，则需要在子WebView页面，进行如下初始化操作：  
 >     mui.init({  
-     
-                keyEventBind: {  
-                
-                    backbutton: false  
-                    
-                }  
-                
-      });  
-      
-     设置成功后，子WebView在接收到back事件后，不会关闭页面，然后back事件分发，父级WebView的mui.back()触发。  
+>     
+>                keyEventBind: {  
+>                
+>                    backbutton: false  
+>                    
+>                }  
+>                
+>      });  
+>      
+>     设置成功后，子WebView在接收到back事件后，不会关闭页面，然后back事件分发，父级WebView的mui.back()触发。  
      
      
    > 父级WebView和子WebView的事件分发问题，比如返回键问题，管理中心的审核详情退出后列表页面消失问题
@@ -223,30 +222,31 @@
 > 会使页面所有事件都不触发。(可以利用这个特性，让页面无法操作，必须等待执行完成，执行关闭plus.nativeUI.closeWaiting();)
 
 ## (20)backbutton
-> 设置backbutton为false,表示当前WebView不处理返回键，表现的结果为：当前WebView对返回键不响应，只是在整个返回键的事件分发流程中忽略当前WebView，返回键 保持原有事件传递机制。
-    > mui.init({  
-    >
-    >            keyEventBind: {  
-    >            
-    >                backbutton: false  
-    >                
-    >            }  
-    >            
-    >  });  
-      
+> 设置backbutton为false,表示当前WebView不处理返回键，表现的结果为：当前WebView对返回键不响应，只是在整个返回键的事件分发流程中忽略当前WebView，返回键 保持原有事件传递机制。  
+
+> mui.init({  
+>
+>            keyEventBind: {  
+>            
+>                backbutton: false  
+>                
+>            }  
+>            
+>  });  
+ 
 
 ## (21)plus.runtime.openURL()可以利用本机的浏览器打开URL。
 
 ## (22)plus.runtime.launchApplication()可以打开本机安装的APP。
 
 ## (23)调查问卷单选、多选、问答题等js的数据组织和接口处理问题
-> 用js模拟java中bean和ArrayList的处理数据的形式存储单选、多选、问答题的答案，用"|"分割问题类型，用","分割选项，最后变成字符串传输，服务端按照既定形式分割后存储。  
-    >
-    >> Tips:使用JavaScript实现面向对象  
-    
-    >> (1)面向对象([Immutable.js](https://facebook.github.io/immutable-js/))  
-     
-    >> (2)函数式编程([jQuery](http://api.jquery.com/))  
+> 用js模拟java中bean和ArrayList的处理数据的形式存储单选、多选、问答题的答案，用"|"分割问题类型，用","分割选项，最后变成字符串传输，服务端按照既定形式分割后存储。   
+
+> Tips:使用JavaScript实现面向对象  
+
+> (1)面向对象([Immutable.js](https://facebook.github.io/immutable-js/))  
+ 
+> (2)函数式编程([jQuery](http://api.jquery.com/))  
      
 ## (24)选项卡切换与页面联动及数据加载问题
 > 选项卡的href="#"对应模块的div的id，不能有空格。
