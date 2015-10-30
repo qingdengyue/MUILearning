@@ -22,7 +22,8 @@
 >                keyEventBind: {  
 >                    backbutton: false  
 >                }  
->      });  
+>      });    
+
 >     设置成功后，子WebView在接收到back事件后，不会关闭页面，然后back事件分发，父级WebView的mui.back()触发。  
      
      
@@ -57,112 +58,63 @@
   >   默认情况下，如果当前列表的数据项，不足一页(亦即数据无法占据屏幕整个高度)，则不会响应列表的事件，此时应该隐藏底部的“加载更多”。因此实现的方案为：  
   
  > $.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {  
-
 > var loading = document.querySelectorAll('.mui-slider-group .mui-scroll')[index];  
- 
 > $(pullRefreshEl).pullToRefresh({  
-
 > down: {  
-
 > callback: function() {  
-> 
 >                          var self = this;  
->                          
 >                          console.log("下拉事件触发");  
->                          
 >                          var currentLoading = loading;  
->                          
 >                           //标记下拉事件  
->                           
 >                          window.PFE = 1;  
->                          
 >                          refreshData(index);  
->                          
 >                          //通知组件停止下拉刷新操作
 >                          self.endPullDownToRefresh();  
->                          
 >                          if (jQuery(jQuery(currentLoading).children("ul").get(0)).height() <    
->                          
 >                          jQuery(currentLoading).parent().parent().height()) {  
->                            
 >                          //计算当前显示区域高度，如果不足一页，则不用显示底部的“加载更多”  
->                          
 >                          self.endPullUpToRefresh(true);  
->                          
 >                          } else {  
->                          
 >                                     self.endPullUpToRefresh();  
->                                     
 >                                    }  
->                                    
 >                          }  
->                         
 >                            },  
->                            
 >                            up: {  
->                            
 >                                auto: true, //auto:true  
->                                自动执行下拉事件一次，页面加载，自动执行，可以执行：计算当前显示区域高度，如果不足一页，则不 >  
+>                                自动执行下拉事件一次，页面加载，自动执行，可以执行：计算当前显示区域高度，如果不足一页，则不
 >                                用显示底部的“加载更多”。
->                                  
 >                                callback: function() {  
->                                
 >                                    console.log("上拉事件触发");  
->                                    
 >                                    var self = this;  
->                                    
 >                                   var currentLoading = loading;  
->                                    
 >                                    //标记上拉事件  
->                                    
 >                                    window.PFE = 2;  
->                                    
 >                                    refreshData(index);  
->                                    
 >                                    //判断首次加载的数据是否超过当前显示区域  
->                                    
 >                                    if (jQuery(jQuery(currentLoading).children("ul").get(0)).height() <  
 >                                    jQuery(currentLoading).parent().parent().height()) {  
->                                    
 >                                        console.log("HJKKLLKL:<L:<L");  
->                                        
 >                                        self.endPullUpToRefresh(true);  
->                                        
 >                                    } else {  
->                                    
 >                                        self.endPullUpToRefresh(false);  
->                                        
 >                                    }  
->                                    
 >                                }  
->                                
 >                            }  
->                            
 >                        });  
->                        
 >                    });  
->                    
+
 
   ##(10)手势事件  
   
 > mui.init({  
-
 > gestureConfig:{  
->
 > tap:true,//默认为true  
->
 > doubletap:true,//默认为false  
->
 > longtap:true,//默认为false  
->
 > swipe:true,//默认为true  
->
 > drag:true,//默认为true  
->
 > hold:false,//默认为false，不监听  
->
 > release:false//默认为false，不监听  
->
 > }});
 
 ## (11)建议使用jQuery
@@ -182,21 +134,13 @@
 ##  (14)实现按压引起元素样式变更，可以使用如下方案(主要是hold和release事件)：  
 
 > mui('.mui-bar-tab').on('hold', 'a', function(e) {  
->
 >                //按住屏幕  
->                
 >                jQuery(this).removeClass('mui-active');  
->                
 >                jQuery(this).addClass('mui-active');  
->                
 >            });  
->            
 >            mui('.mui-bar-tab').on('release', 'a', function(e) {  
->            
 >                //离开屏幕  
->                
 >                jQuery(this).removeClass('mui-active');  
->                
 >            });   
             
 
@@ -224,13 +168,9 @@
 > 设置backbutton为false,表示当前WebView不处理返回键，表现的结果为：当前WebView对返回键不响应，只是在整个返回键的事件分发流程中忽略当前WebView，返回键 保持原有事件传递机制。  
 
 > mui.init({  
->
 >            keyEventBind: {  
->            
 >                backbutton: false  
->                
 >            }  
->            
 >  });  
  
 
