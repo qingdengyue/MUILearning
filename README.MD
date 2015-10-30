@@ -16,7 +16,8 @@
    
 #遇到的问题和解决方案
 ##(1)父子WebViewback事件处理说明
-> 如果父WebView重写了mui.back()方法，那么子WebView重写mui.back()方法无效，返回键触发后，默认行为：首先关闭子WebView，然后触发父WebView的mui.back()方法。如果需要在子WebView页面屏蔽返回键的事件处理，则需要在子WebView页面，进行如下初始化操作：  
+> 如果父WebView重写了mui.back()方法，那么子WebView重写mui.back()方法无效，返回键触发后，默认行为：首先关闭子WebView，然后触发父WebView的mui.back()方法。如果需要在子WebView页面屏蔽返回键的事件处理，则需要在子WebView页面，进行如下初始化操作：    
+
 >     mui.init({  
 >     
 >                keyEventBind: {  
@@ -58,8 +59,9 @@
 ##(8)下拉刷新列表的实现，为列表和数据绑定都在同一个页面(避免处理返回键的问题)。
 
 ##(9)下拉列表事件触发
-  >   默认情况下，如果当前列表的数据项，不足一页(亦即数据无法占据屏幕整个高度)，则不会响应列表的事件，此时应该隐藏底部的“加载更多”。因此实现的方案为：
- > \$.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {  
+  >   默认情况下，如果当前列表的数据项，不足一页(亦即数据无法占据屏幕整个高度)，则不会响应列表的事件，此时应该隐藏底部的“加载更多”。因此实现的方案为：  
+  
+ > $.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {  
 
 > var loading = document.querySelectorAll('.mui-slider-group .mui-scroll')[index];  
  
@@ -146,7 +148,8 @@
 >                    });  
 >                    
 
-  ##(10)手势事件
+  ##(10)手势事件  
+  
 > mui.init({  
 
 > gestureConfig:{  
@@ -181,7 +184,8 @@
 ## (13)Angular和DOM间的参数传递
 > 除了页面的HTML元素之外。可以使用window对象(Angular的controller会通过DI，注入$window对象,亦即DOM中的window对象)。比如需要分页的列表加载场景。
 
-##  (14)实现按压引起元素样式变更，可以使用如下方案(主要是hold和release事件)：
+##  (14)实现按压引起元素样式变更，可以使用如下方案(主要是hold和release事件)：  
+
 > mui('.mui-bar-tab').on('hold', 'a', function(e) {  
 >
 >                //按住屏幕  
