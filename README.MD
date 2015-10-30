@@ -23,8 +23,9 @@
 >                    backbutton: false  
 >                }  
 >      });    
-
->     设置成功后，子WebView在接收到back事件后，不会关闭页面，然后back事件分发，父级WebView的mui.back()触发。  
+  
+  
+> 设置成功后，子WebView在接收到back事件后，不会关闭页面，然后back事件分发，父级WebView的mui.back()触发。  
      
      
    > 父级WebView和子WebView的事件分发问题，比如返回键问题，管理中心的审核详情退出后列表页面消失问题
@@ -40,7 +41,7 @@
 ##(4)由于是打包在本地运行，不存在Ajax的跨域问题。
 
 ##(5)Angular 
-   > \$scope数据绑定采用  \$scope.\$applyAsync执行。(原因在于controller在初始化的过程中会对当前DOM中的表达式进行绑定，如果当前DOM绑定并没有完成，\$scope的直接赋值行为会与未绑定完成的过程冲突，导致绑定失败，而\$scope.\$applyAsync绑定，会通知事件处理器，随后需要绑定数据，类似于排队)。
+   > $scope数据绑定采用  $scope.$applyAsync执行。(原因在于controller在初始化的过程中会对当前DOM中的表达式进行绑定，如果当前DOM绑定并没有完成，$scope的直接赋值行为会与未绑定完成的过程冲突，导致绑定失败，而$scope.$applyAsync绑定，会通知事件处理器，随后需要绑定数据，类似于排队)。
 
 ##(6)plus.storage组件提供了全局存储方案，可以实现缓存(页面事件缓存)、全局变量存储(状态绑定)等场景。
 
